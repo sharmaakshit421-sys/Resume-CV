@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Akshit Sharma – CMA Finalist | Finance Professional Portfolio" />
+  <title>Akshit Sharma | Portfolio</title>  <!-- ===== CSS ===== -->  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: rgba(255,255,255,0.7);
+      --text: #1f2933;
+      --accent: #2563eb;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --card: rgba(30,41,59,0.7);
+      --text: #e5e7eb;
+      --accent: #60a5fa;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(120deg, var(--bg), #e5eaf2);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Scroll progress */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      width: 0;
+      background: var(--accent);
+      z-index: 9999;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+    }
+
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a.active::after,
+    nav a:hover::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    section {
+      padding: 100px 5% 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1, h2, h3 { margin-bottom: 1rem; }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Glass cards */
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skills */
+    .skill {
+      margin-bottom: 1rem;
+    }
+
+    .bar {
+      background: #d1d5db;
+      border-radius: 999px;
+      overflow: hidden;
+      height: 10px;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transition: width 1.5s ease;
+    }
+
+    /* Timeline */
+    .timeline {
+      border-left: 3px solid var(--accent);
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Projects */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .project {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 500px;
+    }
+
+    /* Contact */
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font: inherit;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; gap: 0.5rem; }
+    }
+  </style></head><body>
+  <div id="progress"></div>  <!-- ===== Header ===== -->  <header>
+    <nav aria-label="Main navigation">
+      <strong>Akshit Sharma</strong>
+      <div>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme">Mode</button>
+      </div>
+    </nav>
+  </header>  <!-- ===== Hero ===== -->  <section id="hero">
+    <h1>Akshit Sharma</h1>
+    <h3>CMA Finalist | Finance Professional</h3>
+    <p>Building data-driven financial insights and automated reporting systems.</p>
+    <br />
+    <a href="#contact" class="btn">Contact Me</a>
+    <a href="https://drive.google.com/file/d/1L7dB0EBGntj2XruUigyFt6IJvyeMzVRR/view?usp=drivesdk" target="_blank" class="btn" style="margin-left:10px;">Download CV</a>
+  </section>  <!-- ===== About ===== -->  <section id="about">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        Finance professional with hands-on experience in MIS reporting, financial
+        accounting, costing, and ERP systems. Skilled in Excel automation,
+        financial analysis, and compliance support across multi-entity
+        environments.
+      </p>
+    </div>
+  </section>  <!-- ===== Skills ===== -->  <section id="skills">
+    <h2>Skills</h2>
+    <div class="card">
+      <div class="skill">Excel & Automation<div class="bar"><span data-width="90%"></span></div></div>
+      <div class="skill">Financial Reporting<div class="bar"><span data-width="85%"></span></div></div>
+      <div class="skill">ERP Systems<div class="bar"><span data-width="80%"></span></div></div>
+      <div class="skill">Costing & Budgeting<div class="bar"><span data-width="75%"></span></div></div>
+    </div>
+  </section>  <!-- ===== Experience ===== -->  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item card">
+        <h3>Finance & Costing Trainee</h3>
+        <p>Tinna Rubber & Infrastructure Limited (2025)</p>
+        <p>MIS reporting, costing analysis, dashboards, and compliance support.</p>
+      </div>
+      <div class="timeline-item card">
+        <h3>Finance Intern</h3>
+        <p>Ashiana Housing Limited (2024–2025)</p>
+        <p>Financial reporting, reconciliations, and fixed asset management.</p>
+      </div>
+    </div>
+  </section>  <!-- ===== Projects ===== -->  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="project card" onclick="openModal('Automated MIS dashboard using Excel for foreign subsidiary reporting.')">MIS Dashboard</div>
+      <div class="project card" onclick="openModal('Product-wise profitability and costing analysis model.')">Costing Model</div>
+      <div class="project card" onclick="openModal('Fixed asset tracking and reconciliation system.')">Asset Tracker</div>
+    </div>
+  </section>  <!-- ===== Education ===== -->  <section id="education">
+    <h2>Education & Certifications</h2>
+    <div class="card">
+      <p>CMA Intermediate – 69% (ICMAI)</p>
+      <p>B.Com – Delhi University</p>
+      <p>Excel & Financial Modelling Certifications</p>
+    </div>
+  </section>  <!-- ===== Contact ===== -->  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <form aria-label="Contact form">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <textarea rows="4" placeholder="Message"></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+  </section>  <footer>
+    © 2026 Akshit Sharma
+  </footer>  <!-- Modal -->  <div class="modal" id="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <p id="modalText"></p>
+      <br />
+      <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>  <!-- ===== JavaScript ===== -->  <script>
+    const bars = document.querySelectorAll('.bar span');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const span = entry.target;
+          span.style.width = span.dataset.width;
+        }
+      });
+    }, { threshold: 0.5 });
+
+    bars.forEach(bar => observer.observe(bar));
+
+    const items = document.querySelectorAll('.timeline-item');
+    const itemObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.3 });
+
+    items.forEach(i => itemObserver.observe(i));
+
+    function openModal(text) {
+      document.getElementById('modalText').innerText = text;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    const toggle = document.getElementById('themeToggle');
+    toggle.onclick = () => {
+      const theme = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+    };
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress').style.width = (winScroll / height) * 100 + '%';
+    });
+
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = window.scrollY;
+        if (top >= section.offsetTop - 120) current = section.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+  </script></body>
+</html>
